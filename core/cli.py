@@ -12,9 +12,8 @@ import core.settings as settings
 def output(out, scan_results):
     """Output"""
     if out:
-        with open("./" + out + ".json", 'w') as outfile:
-            json.dump(scan_results, outfile, sort_keys=True,
-                      indent=4, separators=(',', ': '))
+        scan_results = json.dumps(scan_results, sort_keys=True, indent=4, separators=(',', ': '))
+        open("./" + out + ".json", 'w').write(scan_results)
     else:
         print((json.dumps(scan_results, sort_keys=True,
                           indent=4, separators=(',', ': '))))
@@ -49,6 +48,7 @@ def main():
         print("nodejsscan v" + settings.VERSION)
     else:
         parser.print_help()
+
 
 if __name__ == "__main__":
     main()
